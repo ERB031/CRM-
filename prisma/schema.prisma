@@ -1,0 +1,108 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum DealStage {
+  LEAD
+  QUALIFIED
+  PROPOSAL
+  WON
+  LOST
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  role      String? // "owner" | "member"
+  createdAt DateTime  @default(now())
+  contacts  Contact[] @relation("OwnerContacts")
+  tasks     Task[]    @relation("AssigneeTasks")
+}
+
+model Company {
+  id        String    @id @default(cuid())
+  name      String
+  domain    String?   @unique
+  createdAt DateTime  @default(now())
+  contacts  Contact[]
+  deals     Deal[]
+  notes     Note[]
+}
+
+model Contact {
+  id         String     @id @default(cuid())
+  firstName  String
+  lastName   String
+  email      String?    @unique
+  phone      String?
+  companyId  String?
+  company    Company?   @relation(fields: [companyId], references: [id])
+  ownerId    String?
+  owner      User?      @relation("OwnerContacts", fields: [ownerId], references: [id])
+  deals      Deal[]     @relation("ContactDeals")
+  notes      Note[]
+  activities Activity[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  Task       Task[]
+}
+
+model Deal {
+  id         String     @id @default(cuid())
+  title      String
+  stage      DealStage  @default(LEAD)
+  amount     Int? // cents
+  closeDate  DateTime?
+  companyId  String?
+  company    Company?   @relation(fields: [companyId], references: [id])
+  contacts   Contact[]  @relation("ContactDeals")
+  activities Activity[]
+  notes      Note[]
+  createdAt  DateTime   @default(now())
+  Task       Task[]
+}
+
+model Task {
+  id         String    @id @default(cuid())
+  title      String
+  due        DateTime?
+  completed  Boolean   @default(false)
+  assigneeId String?
+  assignee   User?     @relation("AssigneeTasks", fields: [assigneeId], references: [id])
+  contactId  String?
+  contact    Contact?  @relation(fields: [contactId], references: [id])
+  dealId     String?
+  deal       Deal?     @relation(fields: [dealId], references: [id])
+  createdAt  DateTime  @default(now())
+}
+
+model Activity {
+  id        String   @id @default(cuid())
+  type      String // "call" | "email" | "meeting" | "note"
+  at        DateTime @default(now())
+  summary   String?
+  contactId String?
+  contact   Contact? @relation(fields: [contactId], references: [id])
+  dealId    String?
+  deal      Deal?    @relation(fields: [dealId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  body      String
+  contactId String?
+  contact   Contact? @relation(fields: [contactId], references: [id])
+  companyId String?
+  company   Company? @relation(fields: [companyId], references: [id])
+  dealId    String?
+  deal      Deal?    @relation(fields: [dealId], references: [id])
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,42 @@
+
+Entering npm script environment at location:
+C:\Users\erhys\my-app
+Type 'exit' or ^D when finished
+
+Microsoft Windows [Version 10.0.26100.4946]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\erhys\my-app>
+> my-app@0.1.0 npx
+> create-config
+
+@eslint/create-config: v1.10.0
+
+[?25l[36m?[39m [1mWhat do you want to lint?[22m [2m...[22m 
+[32m√[39m [36m[4mJavaScript[24m[39m
+[2m[90m√[39m[22m JSON
+[2m[90m√[39m[22m JSON with comments
+[2m[90m√[39m[22m JSON5
+[2m[90m√[39m[22m Markdown
+[2m[90m√[39m[22m CSS[6A[33G[6B[2K[F[2K[F[2K[F[2K[F[2K[F[2K[F[2K[1G[35m×[39m [1mWhat do you want to lint?[22m [2m·[22m [35mNo items were selected[39m[21D
+[?25h
+C:\Users\erhys\my-app>
+> my-app@0.1.0 npx
+> create-config
+
+@eslint/create-config: v1.10.0
+
+[?25l[36m?[39m [1mWhat do you want to lint?[22m [2m...[22m 
+[32m√[39m [36m[4mJavaScript[24m[39m
+[2m[90m√[39m[22m JSON
+[2m[90m√[39m[22m JSON with comments
+[2m[90m√[39m[22m JSON5
+[2m[90m√[39m[22m Markdown
+[2m[90m√[39m[22m CSS[6A[33G[6B[2K[F[2K[F[2K[F[2K[F[2K[F[2K[F[2K[1G[32m√[39m [1mWhat do you want to lint?[22m [2m·[22m [36mjavascript[39m[9D
+[?25h[?25l[36m?[39m [1mHow would you like to use ESLint?[22m [2m...[22m 
+  To check syntax only
+[36m>[39m [36m[4mTo check syntax and find problems[24m[39m[2A[41G[2B[2K[F[2K[F[2K[1G[35m×[39m [1mHow would you like to use ESLint?[22m [2m·[22m 
+[?25h
+C:\Users\erhys\my-app>
+
+C:\Users\erhys\my-app>

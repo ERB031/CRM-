@@ -1,0 +1,23 @@
+{
+  // Use Prettier for formatting
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Format + ESLint fix whenever you save
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always"
+  },
+
+  // Keep TypeScript happy with JSX in TSX files
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+
+  // Optional: only format supported languages
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
+  // Quiet ESLint about this workspace file
+  "eslint.workingDirectories": [{ "mode": "auto" }]
+}
